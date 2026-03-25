@@ -17,10 +17,10 @@ export default function Navbar() {
   }, [])
 
   const navLinks = [
-    { name: 'ABOUT', href: '/#about' },
+    { name: 'ABOUT', href: '/about' },
     { name: 'MENU', href: 'https://plainvienna.at/wp-content/uploads/2025/09/Plain-Vienna-Menu-Autumn.pdf' },
     { name: 'IMPRESSIONS', href: '/#impressions' },
-    { name: 'CONTACT', href: '/#contact' },
+    { name: 'CONTACT', href: '/contact' },
   ]
 
   return (

@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Instagram, ArrowRight, ShoppingBag } from 'lucide-react'
 import { PrismaClient } from '@prisma/client'
+import ContactForm from '../components/ContactForm'
 
 const prisma = new PrismaClient()
 
@@ -51,7 +52,7 @@ export default async function Home() {
               OUR MENU
             </Link>
             <Link 
-              href="/#reservation" 
+              href="/contact" 
               className="border-2 border-white hover:bg-white hover:text-primary text-white font-bold tracking-widest px-10 py-4 transition-all duration-300 uppercase text-sm"
             >
               RESERVATION
@@ -76,12 +77,12 @@ export default async function Home() {
               Du suchst gesundes Essen in Wien, das nicht nur schmeckt, sondern auch Sinn macht? Im PLAIN Vienna bekommst du ehrliche Küche mit hochwertigen Bio-Zutaten, regional und nachhaltig gedacht. Ob vegane Bowls, herzhafte Burger oder frische Limonaden – bei uns isst du mit gutem Gefühl. Ganz ohne Verzicht. Ganz viel Genuss. Und ganz klar: mit Impact.
             </p>
             <div className="flex flex-col gap-4 mt-4">
-               <div className="flex items-center gap-4 group cursor-pointer">
+               <Link href="/about" className="flex items-center gap-4 group cursor-pointer w-fit">
                  <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                    <ArrowRight size={20} />
                  </div>
-                 <span className="text-sm font-bold tracking-widest uppercase text-primary">Explore our Story</span>
-               </div>
+                 <span className="text-sm font-bold tracking-widest uppercase text-primary border-b border-transparent group-hover:border-primary transition-all">Explore our Story</span>
+               </Link>
             </div>
           </div>
           <div className="relative aspect-[4/5] md:aspect-square overflow-hidden rounded-lg">
@@ -110,7 +111,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col gap-12">
           <div className="flex flex-col items-center text-center gap-4">
             <span className="text-accent font-bold tracking-[0.3em] uppercase text-xs font-karla">The Flavor Experience</span>
-            <h2 className="text-4xl md:text-6xl font-bold font-playfair text-primary">OUR MENU</h2>
+            <h2 className="text-4xl md:text-6xl font-bold font-playfair text-primary leading-tight">OUR MENU</h2>
             <p className="text-lg text-dark/60 max-w-2xl font-karla">Discover our curated selection of soul food. Healthy, flavorful, and made with heart.</p>
           </div>
 
@@ -159,7 +160,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col items-center text-center gap-12">
           <div className="flex flex-col items-center gap-4">
             <span className="text-accent font-bold tracking-[0.3em] uppercase text-xs">PLAIN CARES</span>
-            <h2 className="text-4xl md:text-6xl font-bold font-playfair">Kein überflüssiges Blabla,<br />kein Kleingedrucktes.</h2>
+            <h2 className="text-4xl md:text-6xl font-bold font-playfair leading-tight">Kein überflüssiges Blabla,<br />kein Kleingedrucktes.</h2>
           </div>
           <p className="text-lg md:text-xl max-w-3xl opacity-80 leading-relaxed font-karla">
             Bei uns bekommst du, was zählt: ehrliches Essen und Trinken – ohne Chichi, ohne Kompromisse. Dafür mit echtem Geschmack, hochwertigen Zutaten und viel Feingefühl. Wir setzen auf Natürlichkeit, Qualität und Haltung – nicht als Marketing, sondern aus Überzeugung.
@@ -168,18 +169,23 @@ export default async function Home() {
             <div className="flex flex-col gap-4">
               <span className="text-3xl font-bold font-playfair text-accent italic">01.</span>
               <h3 className="text-xl font-bold tracking-widest uppercase">Ehrlich</h3>
-              <p className="text-sm opacity-60 leading-relaxed">Keine versteckten Zusätze. Nur das Beste vom Feld direkt in die Küche.</p>
+              <p className="text-sm opacity-60 leading-relaxed font-karla">Keine versteckten Zusätze. Nur das Beste vom Feld direkt in die Küche.</p>
             </div>
             <div className="flex flex-col gap-4">
               <span className="text-3xl font-bold font-playfair text-accent italic">02.</span>
               <h3 className="text-xl font-bold tracking-widest uppercase">Bio & Regional</h3>
-              <p className="text-sm opacity-60 leading-relaxed">Wir kennen unsere Produzenten und setzen auf kurze Wege.</p>
+              <p className="text-sm opacity-60 leading-relaxed font-karla">Wir kennen unsere Produzenten und setzen auf kurze Wege.</p>
             </div>
             <div className="flex flex-col gap-4">
               <span className="text-3xl font-bold font-playfair text-accent italic">03.</span>
               <h3 className="text-xl font-bold tracking-widest uppercase">Impact</h3>
-              <p className="text-sm opacity-60 leading-relaxed">Jeder Bissen unterstützt eine bessere Welt. Vegan-friendly & sustainable.</p>
+              <p className="text-sm opacity-60 leading-relaxed font-karla">Jeder Bissen unterstützt eine bessere Welt. Vegan-friendly & sustainable.</p>
             </div>
+          </div>
+          <div className="mt-8">
+            <Link href="/about" className="bg-accent hover:bg-white hover:text-accent text-white font-bold tracking-widest px-10 py-4 transition-all duration-300 uppercase text-xs">
+              More about PLAIN
+            </Link>
           </div>
         </div>
       </section>
@@ -222,52 +228,40 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Reservation Info */}
           <div className="flex flex-col gap-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-primary">RESERVIERUNG</h2>
-            <p className="text-lg text-dark/70 leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary uppercase tracking-tight">RESERVIERUNG</h2>
+            <p className="text-lg text-dark/70 leading-relaxed font-karla">
               Du möchtest einen Tisch reservieren? Wir freuen uns auf deinen Besuch! Genieße entspannte Stunden in unserem modernen Restaurant im 9. Bezirk.
             </p>
             <div className="flex flex-col gap-6 mt-4">
               <div className="p-8 bg-white shadow-xl rounded-lg border border-primary/5 flex flex-col gap-6 items-center text-center">
-                <h3 className="text-xl font-bold tracking-widest uppercase">Einfach online buchen</h3>
+                <h3 className="text-xl font-bold tracking-widest uppercase text-primary">Einfach online buchen</h3>
                 <Link 
-                  href="#mol-open" 
-                  className="bg-primary hover:bg-accent text-white font-bold tracking-widest px-12 py-5 transition-all duration-300 uppercase text-sm w-full"
+                  href="/contact#mol-open" 
+                  className="bg-primary hover:bg-accent text-white font-bold tracking-widest px-12 py-5 transition-all duration-300 uppercase text-xs w-full"
                 >
                   Zur Reservierung
                 </Link>
                 <p className="text-xs font-bold uppercase tracking-widest text-dark/40">Powered by Molzait</p>
               </div>
             </div>
+            <div className="mt-auto">
+               <Link href="/contact" className="flex items-center gap-4 group w-fit">
+                 <div className="w-12 h-12 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                   <ArrowRight size={20} />
+                 </div>
+                 <span className="text-sm font-bold tracking-widest uppercase text-primary border-b border-transparent group-hover:border-primary transition-all">Contact Details</span>
+               </Link>
+            </div>
           </div>
 
-          {/* Contact Form Placeholder */}
-          <div className="flex flex-col gap-8 bg-white p-8 md:p-12 shadow-2xl rounded-xl">
-            <h3 className="text-2xl font-bold text-primary uppercase tracking-widest">Meld dich bei uns!</h3>
-            <form action="/api/contact" method="POST" className="flex flex-col gap-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-dark/50">Name</label>
-                  <input type="text" name="name" className="border-b border-primary/20 focus:border-primary outline-none py-2 bg-transparent text-sm" placeholder="Dein Name" required />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-dark/50">E-Mail</label>
-                  <input type="email" name="email" className="border-b border-primary/20 focus:border-primary outline-none py-2 bg-transparent text-sm" placeholder="deine@email.com" required />
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-dark/50">Nachricht</label>
-                <textarea name="message" rows={4} className="border-b border-primary/20 focus:border-primary outline-none py-2 bg-transparent text-sm resize-none" placeholder="Was gibt's Neues?" required></textarea>
-              </div>
-              <button type="submit" className="bg-primary hover:bg-accent text-white font-bold tracking-widest py-4 transition-all duration-300 uppercase text-xs mt-4">
-                Abschicken
-              </button>
-            </form>
-          </div>
+          {/* Contact Form Component */}
+          <ContactForm />
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="h-[450px] w-full grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden">
+      <section className="h-[450px] w-full grayscale hover:grayscale-0 transition-all duration-1000 overflow-hidden relative">
+        <div className="absolute inset-0 bg-primary/5 pointer-events-none z-10" />
         <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.336153923363!2d16.35824511565163!3d48.21938927922987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07963d89069d%3A0xe7f98d5c4d5e97f9!2sBerggasse%2025%2C%201090%20Wien%2C%20Austria!5e0!3m2!1sen!2sde!4v1653456789012!5m2!1sen!2sde" 
           width="100%" 
